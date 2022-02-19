@@ -18,6 +18,11 @@ or `cargo build --release` and then `target/release/fallblock`
 
 `blank.nbt` is a [map template](https://github.com/NucleoidMC/map-templates) that can be used for testing.
 
+## TODO
+
+- [ ] Status/server ping
+- [ ] Velocity player information forwarding
+
 ## Other notes
 
 [wiki.vg](https://wiki.vg/) was my go to source of information for implementing much of the Minecraft protocol, so go check them out <3

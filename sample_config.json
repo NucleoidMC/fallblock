@@ -1,0 +1,90 @@
+{
+    "server_brand": "Nucleoid Fallblock",
+
+    "map_file": "blank.nbt",
+    "spawn_point": [0, 10, 0],
+
+    "join_game_data": {
+        "is_hardcore": false,
+        "gamemode": "Adventure",
+        "previous_gamemode": "Adventure",
+        "dimension_names": ["minecraft:overworld"],
+        "dimension_codec": {
+            "minecraft:dimension_type": {
+                "type": "minecraft:dimension_type",
+                "value": [
+                    {
+                        "name": "minecraft:overworld",
+                        "id": 0,
+                        "element": {
+                            "piglin_safe": false,
+                            "natural": true,
+                            "ambient_light": 0.0,
+                            "infiniburn": "minecraft:infiniburn_overworld",
+                            "respawn_anchor_works": false,
+                            "has_skylight": true,
+                            "bed_works": true,
+                            "effects": "minecraft:overworld",
+                            "has_raids": true,
+                            "min_y": 0,
+                            "height": 256,
+                            "logical_height": 256,
+                            "coordinate_scale": 1.0,
+                            "ultrawarm": false,
+                            "has_ceiling": false
+                        }
+                    }
+                ]
+            },
+            "minecraft:worldgen/biome": {
+                "type": "minecraft:worldgen/biome",
+                "value": [
+                    {
+                        "name": "minecraft:plains",
+                        "id": 0,
+                        "element": {
+                            "precipitation": "rain",
+                            "effects": {
+                                "sky_color": 7907327,
+                                "water_fog_color": 329011,
+                                "fog_color": 12638463,
+                                "water_color": 4159204
+                            },
+                            "depth": 0.125,
+                            "temperature": 0.8,
+                            "scale": 0.05,
+                            "downfall": 0.4,
+                            "category": "plains"
+                        }
+                    }
+                ]
+            }
+        },
+        "dimension": {
+            "piglin_safe": false,
+            "natural": true,
+            "ambient_light": 0.0,
+            "infiniburn": "minecraft:infiniburn_overworld",
+            "respawn_anchor_works": false,
+            "has_skylight": true,
+            "bed_works": true,
+            "effects": "minecraft:overworld",
+            "has_raids": true,
+            "min_y": 0,
+            "height": 256,
+            "logical_height": 256,
+            "coordinate_scale": 1.0,
+            "ultrawarm": false,
+            "has_ceiling": false
+        },
+        "dimension_name": "minecraft:overworld",
+        "hashed_seed": 0,
+        "max_players": 1,
+        "view_distance": 5,
+        "simulation_distance": 1,
+        "reduced_debug_info": false,
+        "enable_respawn_screen": true,
+        "is_debug": false,
+        "is_flat": false
+    }
+}

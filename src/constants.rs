@@ -1,8 +1,14 @@
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 use crate::{io::PacketWriter, util::Result};
 
 pub const PROTOCOL_VERSION: i32 = 757;
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct ProtocolVersion {
+    protocol: i32,
+    name: String,
+}
 
 #[derive(Clone, Debug, Deserialize)]
 pub enum Gamemode {

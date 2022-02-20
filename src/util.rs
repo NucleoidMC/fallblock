@@ -14,10 +14,16 @@ pub enum ProtocolError {
     InvalidEnumValue(i32),
     #[error("missing handshake")]
     MissingHandshake,
+    #[error("missing request")]
+    MissingRequest,
     #[error("invalid packet id: {0}")]
     InvalidPacketId(i32),
     #[error("nbt error: {0}")]
     NBTError(#[from] nbt::Error),
+    #[error("json error: {0}")]
+    JsonError(#[from] serde_json::Error),
+    #[error("no packet")]
+    NoPacket
 }
 
 pub type Result<T> = std::result::Result<T, ProtocolError>;

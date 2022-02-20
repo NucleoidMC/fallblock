@@ -84,6 +84,7 @@ dependencies = [
  "futures",
  "hematite-nbt",
  "lazy_static",
+ "mc_chat",
  "serde",
  "serde_json",
  "thiserror",
@@ -266,6 +267,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "51b9bbe6c47d51fc3e1a9b945965946b4c44142ab8792c50835a980d362c2710"
 dependencies = [
  "cfg-if",
+]
+
+[[package]]
+name = "mc_chat"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc1950a018a5e574810e0ae517753b03d73df94da99133d99459a7d9fadcbb2f"
+dependencies = [
+ "serde",
 ]
 
 [[package]]
@@ -673,6 +683,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bc5cf98d8186244414c848017f0e2676b3fcb46807f6668a97dfe67359a3c4b7"
 dependencies = [
  "md5",
+ "serde",
 ]
 
 [[package]]

@@ -187,6 +187,11 @@ pub trait PacketWriter {
         self.write_ulong(x << 38 | z << 12 | y)?;
         Ok(())
     }
+
+    fn write_json<T: serde::Serialize>(&mut self, v: &T) -> Result<()> {
+        let json = serde_json::to_string(v)?;
+        self.write_string(&json, 32767)
+    }
 }
 
 impl<T: byteorder::WriteBytesExt> PacketWriter for T {

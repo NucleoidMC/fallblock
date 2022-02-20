@@ -86,7 +86,7 @@ async fn handle_next_phase<
 >(rdr: &mut R, wr: &mut W, next_state: ProtocolState, store: ServerStore) -> Result<()> {
     match next_state {
         ProtocolState::Login => protocol::login::handle(rdr, wr, store).await,
-        ProtocolState::Status => Ok(()),
+        ProtocolState::Status => protocol::status::handle(rdr, wr, store).await,
     }
 }
 

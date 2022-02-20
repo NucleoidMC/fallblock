@@ -2,7 +2,7 @@ use std::{fs::File, path::PathBuf};
 
 use serde::Deserialize;
 
-use crate::protocol::play::JoinGameData;
+use crate::protocol::{play::JoinGameData, status::ServerListPingResponse};
 
 #[derive(Debug, Deserialize)]
 pub struct Config {
@@ -10,6 +10,7 @@ pub struct Config {
     pub join_game_data: JoinGameData,
     pub spawn_point: (f64, f64, f64),
     pub map_file: PathBuf,
+    pub status: ServerListPingResponse,
 }
 
 pub fn load_config() -> Config {

@@ -18,9 +18,11 @@ or `cargo build --release` and then `target/release/fallblock`
 
 `blank.nbt` is a [map template](https://github.com/NucleoidMC/map-templates) that can be used for testing.
 
+`iconify.sh` is a small script to generate the `data:image/png;base64,...` string needed for setting a favicon in the config.
+
 ## TODO
 
-- [ ] Status/server ping
+- [x] Status/server ping
 - [ ] Velocity player information forwarding
 
 ## Other notes

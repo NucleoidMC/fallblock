@@ -3,7 +3,7 @@ pub mod login;
 pub mod status;
 pub mod play;
 
-use std::{io::Cursor, fmt::LowerHex};
+use std::{io::{Cursor, Read}, fmt::LowerHex};
 
 use bytes::{BytesMut, Buf, Bytes};
 use tokio_util::codec::{Decoder, Encoder};
@@ -50,6 +50,10 @@ impl PacketReader for PacketData {
         self.data.read_long()
     }
 
+    fn read_ulong(&mut self) -> crate::util::Result<u64> {
+        self.data.read_ulong()
+    }
+
     fn read_float(&mut self) -> crate::util::Result<f32> {
         self.data.read_float()
     }
@@ -60,6 +64,15 @@ impl PacketReader for PacketData {
 
     fn read_string(&mut self, max_len: i32) -> crate::util::Result<String> {
         self.data.read_string(max_len)
+    }
+
+    // We implement this differently to the blanket impl as we can optimise the Vec
+    // capcacity based on the actual amount of data we have.
+    fn read_remaining(&mut self) -> crate::util::Result<Vec<u8>> {
+        let remaining = self.data.get_ref().len() - self.data.position() as usize;
+        let mut buffer = Vec::with_capacity(remaining);
+        self.data.read_exact(&mut buffer)?;
+        Ok(buffer)
     }
 }
 
@@ -156,8 +169,12 @@ impl Decoder for MinecraftFramedCodec {
                     return Ok(None);
                 }
                 length_buffer[i] = chunk[i];
-                let mut cur = Cursor::new(length_buffer);
-                cur.read_var_int()
+                if length_buffer[i] & 128 == 128 {
+                    Err(ProtocolError::NoPacket)
+                } else {
+                    let mut cur = Cursor::new(length_buffer);
+                    cur.read_var_int()
+                }
             };
             if let Ok(length) = length {
                 let length = length as usize;

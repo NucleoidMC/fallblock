@@ -19,6 +19,7 @@ pub trait PacketReader: std::fmt::Debug {
 
     fn read_int(&mut self) -> Result<i32>;
     fn read_long(&mut self) -> Result<i64>;
+    fn read_ulong(&mut self) -> Result<u64>;
 
     fn read_float(&mut self) -> Result<f32>;
     fn read_double(&mut self) -> Result<f64>;
@@ -58,6 +59,15 @@ pub trait PacketReader: std::fmt::Debug {
         }
         Ok(value)
     }
+
+    fn read_remaining(&mut self) -> Result<Vec<u8>>;
+
+    fn read_uuid(&mut self) -> Result<Uuid> {
+        let msb = self.read_ulong()?;
+        let lsb = self.read_ulong()?;
+        let data = (msb as u128) << 64 | (lsb as u128);
+        Ok(Uuid::from_u128(data))
+    }
 }
 
 impl<T: byteorder::ReadBytesExt + std::fmt::Debug> PacketReader for T {
@@ -85,6 +95,10 @@ impl<T: byteorder::ReadBytesExt + std::fmt::Debug> PacketReader for T {
         Ok(self.read_i64::<BigEndian>()?)
     }
 
+    fn read_ulong(&mut self) -> Result<u64> {
+        Ok(self.read_u64::<BigEndian>()?)
+    }
+
     fn read_float(&mut self) -> Result<f32> {
         Ok(self.read_f32::<BigEndian>()?)
     }
@@ -101,6 +115,12 @@ impl<T: byteorder::ReadBytesExt + std::fmt::Debug> PacketReader for T {
         let mut buffer = vec![0; length as usize];
         self.read_exact(&mut buffer)?;
         Ok(String::from_utf8(buffer)?)
+    }
+
+    fn read_remaining(&mut self) -> Result<Vec<u8>> {
+        let mut buffer = vec![];
+        self.read_to_end(&mut buffer)?;
+        Ok(buffer)
     }
 }
 

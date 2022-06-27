@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{io::PacketWriter, util::Result};
 
-pub const PROTOCOL_VERSION: i32 = 757;
+pub const PROTOCOL_VERSION: i32 = 758;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct ProtocolVersion {

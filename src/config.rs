@@ -11,6 +11,8 @@ pub struct Config {
     pub spawn_point: (f64, f64, f64),
     pub map_file: PathBuf,
     pub status: ServerListPingResponse,
+    #[serde(default)]
+    pub modern_forwarding_key: Option<String>,
 }
 
 pub fn load_config() -> Config {

@@ -70,7 +70,7 @@ impl PacketReader for PacketData {
     // capcacity based on the actual amount of data we have.
     fn read_remaining(&mut self) -> crate::util::Result<Vec<u8>> {
         let remaining = self.data.get_ref().len() - self.data.position() as usize;
-        let mut buffer = Vec::with_capacity(remaining);
+        let mut buffer = vec![0; remaining];
         self.data.read_exact(&mut buffer)?;
         Ok(buffer)
     }
